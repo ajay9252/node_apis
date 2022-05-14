@@ -1,0 +1,37 @@
+- sudo npm install -g sequelize-cli        = for sequelize command
+- npm install axios
+- npm install dotenv
+- cp .env.example .env                     = use .env credentials / db config is not being used as of now
+- config/config.json                       = db configuration
+
+
+Model creation sample / This would also create the migration file
+
+#Sample model creation
+sequelize model:create --name convenience_options --attributes payment_type:string,option_type:string,option_value:string,option_order:string,currency:st
+ring,created_by:string,deleted_at:date
+
+#Migrate migrations
+sequelize db:migrate
+
+#Undo specific migration
+npx sequelize-cli db:migrate:undo #undo all
+db:migrate:undo --name 20180704124934-create-branch.js
+
+#Undo migrations
+sequelize db:migrate:undo --name 20220328120907-create-address-house-building-street-number.js
+
+#Add Seeder
+npx sequelize-cli seed:generate --name convenience_options
+
+#Execute Seeder
+npx sequelize-cli db:seed:all
+
+#Undo Seed
+npx sequelize-cli db:seed:undo
+
+#Undo Specific Seed
+npx sequelize-cli db:seed:undo --seed convenience_options
+
+#Undo All Seed
+npx sequelize-cli db:seed:undo:all
